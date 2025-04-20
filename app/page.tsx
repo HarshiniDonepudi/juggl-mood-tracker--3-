@@ -104,12 +104,12 @@ export default function Home() {
 
         {/* Main card */}
         <div
-          className={`max-w-3xl mx-auto rounded-[2.5rem] bg-gradient-to-t from-white/75 to-white/25 shadow-[0px_0px_8px_0px_rgba(0,0,0,0.16)] backdrop-blur-[10px] p-8 relative transition-all duration-300 ${
+          className={`w-full max-w-3xl mx-auto rounded-[2.5rem] bg-gradient-to-t from-white/75 to-white/25 shadow-[0px_0px_8px_0px_rgba(0,0,0,0.16)] backdrop-blur-[10px] p-8 relative transition-all duration-300 ${
             isClosing ? "scale-95 opacity-0" : "scale-100 opacity-100"
           }`}
         >
           {/* Progress bar */}
-          <div className="mb-2">
+          <div className="mb-6">
             <div className="flex justify-between text-sm text-[#585b5b] mb-1">
               <span>{currentQuestionIndex + 1} OF {timeBasedQuestions.length}</span>
               <span>{Math.round(progress)}%</span>
@@ -128,12 +128,12 @@ export default function Home() {
           </p>
 
           {/* Question */}
-          <h1 className="text-3xl md:text-4xl font-medium text-center text-[#383a3a] mb-12">
+          <h1 className="text-2xl md:text-3xl text-center text-[#383A3A] mb-12 font-[RocaBold]">
             {currentQuestion.text}
           </h1>
 
           {/* Options */}
-          <div className={`flex flex-wrap justify-center gap-8 mb-20 ${
+          <div className={`grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-8 mb-20 ${
             currentQuestion.type === 'number' ? 'max-w-2xl mx-auto overflow-y-auto max-h-64' : ''
           }`}>
             {currentQuestion.options.map((option) => (
@@ -172,15 +172,15 @@ interface MoodOptionProps {
 function MoodOption({ icon, label, selected = false, onClick }: MoodOptionProps) {
   return (
     <div
-      className={`flex w-[6.5rem] py-4 px-0 flex-col items-center gap-3 rounded-[1rem] cursor-pointer transition-all duration-200 ${
-        selected ? "shadow-[0_0_8px_rgba(0,0,0,0.08)]" : "hover:shadow-[0_0_8px_rgba(0,0,0,0.04)]"
-      } ${selected ? "scale-105" : "hover:scale-102"}`}
+      className={`flex flex-col items-center gap-2 p-4 rounded-xl cursor-pointer transition-all duration-200 transform hover:-translate-y-2 min-w-[100px] ${
+        selected ? "bg-white shadow-[0_2px_8px_rgba(0,0,0,0.05)] -translate-y-2" : "hover:bg-white/5"
+      }`}
       onClick={onClick}
     >
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center w-12 h-12">
         <MoodIcon mood={icon} />
       </div>
-      <span className="text-sm text-[#585b5b] font-medium">{label}</span>
+      <span className="text-sm text-[#585b5b] text-center whitespace-normal">{label}</span>
     </div>
   )
 }
